@@ -1,0 +1,9 @@
+{
+  "name": "IdeasBoard",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev:client": "pnpm --dir client dev",
+    "dev:server": "pnpm --dir server dev"
+  }
+}
