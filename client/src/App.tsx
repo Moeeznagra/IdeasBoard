@@ -19,20 +19,20 @@ function App() {
   }, [name]);
 
   useEffect(() => {
-    async function loadIdea() {
+    async function loadIdeas() {
       const response = await fetch(`${API_URL}/ideas`);
       const data = await response.json();
-      setIdeaText(data);
+      setIdeas(data);
       setLoading(false);
     }
 
-    loadIdea();
+    loadIdeas();
   }, []);
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    if(!name.trim() || !ideaText.trim()) {
+    if (!name.trim() || !ideaText.trim()) {
       alert("Please enter your name and idea.");
       return;
     }
@@ -40,7 +40,7 @@ function App() {
     const response = await fetch(`${API_URL}/ideas`, {
       method: "POST",
       headers: {
-        "Content-Type": "applications/json"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         text: ideaText,
@@ -57,24 +57,23 @@ function App() {
     <div className="min-h-screen bg-slate-50 px-4 py-10">
       <div className="mx-auto max-w-3xl">
         <h1 className="text-4xl font-bold text-slate-900">Ideas Board</h1>
-        <p className="mt-2 text-slate-600">
-          A full-stack app with React, Express, PostgreSQL, WebSockets, and .NET.
-        </p>
+        <p className="mt-2 text-slate-600">React + Express version</p>
+
         <form onSubmit={handleSubmit} className="mt-8 rounded-xl bg-white p-6 shadow">
           <h2 className="text-xl font-semibold">New Idea</h2>
 
           <div className="mt-4 grid gap-4">
             <input
-              value = {name}
+              value={name}
               onChange={(e) => setName(e.target.value)}
               className="rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
               placeholder="Your name"
             />
-            <textarea 
+            <textarea
               value={ideaText}
               onChange={(e) => setIdeaText(e.target.value)}
-              className="min-h-28 rounded-lg border border-slate-300 px-4 py03 outline-none focus:border-blue-500"
-              placeholder = "Your idea"
+              className="min-h-28 rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
+              placeholder="Your idea"
             />
             <button className="rounded-lg bg-blue-600 px-4 py-3 font-medium text-white hover:bg-blue-700">
               Submit Idea
