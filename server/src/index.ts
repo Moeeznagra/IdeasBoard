@@ -40,5 +40,5 @@ app.post("/ideas", (req, res) => {
 })
 
 app.listen(port, () => {
-       console.log(`Server listening on http:localhost:${port}`);
+       console.log(`Server listening on http://localhost:${port}`);
 })
